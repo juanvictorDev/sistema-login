@@ -15,7 +15,7 @@ class _InternaState extends State<Interna> {
         centerTitle: true,
         backgroundColor: Colors.deepPurple,
         title: const Text(
-          "Sistema Alpha",
+          "Sistema Interno",
           style: TextStyle(
             color: Colors.white,
             fontSize: 25,
@@ -43,11 +43,20 @@ class _InternaState extends State<Interna> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Seja bem vindo(a) "),
+                    Text(
+                      "Seja bem vindo(a) ",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold
+                      )
+                    ),
                     Text(
                       "Pessoa",
                       style: TextStyle(
-                        color: Colors.amber,
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold
                       )
                     ),
                   ],
