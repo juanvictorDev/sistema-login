@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "945472943992",
+    "project_id": "sistema-login-4f88f",
+    "storage_bucket": "sistema-login-4f88f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:945472943992:android:3bd00c69970051c9147a8d",
+        "android_client_info": {
+          "package_name": "com.sistema_login.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBquypCLU1UL9QijvvIEjhduQTz-WJh2-c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

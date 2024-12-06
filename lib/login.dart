@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sistema_login/auth.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -11,6 +12,12 @@ class _LoginState extends State<Login> {
   bool entrar = true;
   
   final _formKey = GlobalKey<FormState>();
+
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _senhaController = TextEditingController();
+  final TextEditingController _nomeController = TextEditingController();
+
+  final AuthService _authServ = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +49,7 @@ class _LoginState extends State<Login> {
                 ),
                 const SizedBox(height: 20),
                 TextFormField(
+                  controller: _emailController,
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
                       return "Por favor insira um e-mail";
@@ -78,6 +86,7 @@ class _LoginState extends State<Login> {
                 ),
                 const SizedBox(height: 5),
                 TextFormField(
+                  controller: _senhaController,
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
                       return "Por favor insira uma senha";
@@ -113,37 +122,7 @@ class _LoginState extends State<Login> {
                     children: [
                       const SizedBox(height: 5),
                       TextFormField(
-                        validator: (String? value) {
-                          if (value == null || value.isEmpty) {
-                            return "Por favor insira a confirmação da senha";
-                          }
-                          if (value.length < 8) {
-                            return "A confirmação da senha deve ter no mínimo 8 caracteres";
-                          }
-                          return null;
-                        },
-                        decoration: InputDecoration(
-                          hintText: "Confirme a senha",
-                          fillColor: Colors.white,
-                          filled: true,
-                          hintStyle: const TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w200,
-                            fontSize: 16,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          )
-                        ),
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w200,
-                          fontSize: 16,
-                        ),
-                        obscureText: true,
-                      ),
-                      const SizedBox(height: 5),
-                      TextFormField(
+                        controller: _nomeController,
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
                             return "Por favor insira o nome";
@@ -221,10 +200,24 @@ class _LoginState extends State<Login> {
     );
   }
   botaoEntrar(){
+    String email = _emailController.text;
+    String senha = _senhaController.text;
+    String nome = _nomeController.text;
+
     if(_formKey.currentState!.validate()){
-      print("formulario valido");
+      if(entrar){
+        print("entrada validada");
+        _authServ.logUser(email: email, senha: senha);
+
+      }else{
+        print("cadastro validado");
+        print("email: ${_emailController.text}");
+        print("senha: ${_senhaController.text}");
+        print("nome: ${_nomeController.text}");
+        _authServ.cadUser(email: email, senha: senha, nome: nome);
+      }
     }else{
-      print("formulario invalido");
+      print("formulario não está funcionando");
     }
   }
 }
